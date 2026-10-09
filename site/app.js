@@ -40,7 +40,11 @@ function renderTimeline(id, events) {
   });
 }
 renderTimeline('timeline1', data.day1);
-renderTimeline('timeline2', data.day2);
+const meetingIndex = data.day2.findIndex(event => event.time === '14:20');
+const commonReturn = data.day2.slice(meetingIndex);
+const freeCourse = data.day2.slice(0, meetingIndex);
+renderTimeline('free-timeline', freeCourse);
+renderTimeline('timeline2', commonReturn);
 renderTimeline('castle-timeline', data.castleRoute);
 document.querySelectorAll('[data-place]').forEach(anchor => {
   const link = mapLink(data.places[anchor.dataset.place].query);
@@ -110,5 +114,6 @@ function renderScheduleTable(title, events, note) {
   document.getElementById('schedule-tables').append(section);
 }
 renderScheduleTable('1日目：12月19日（土）', data.day1);
-renderScheduleTable('2日目：12月20日（日）', data.day2);
-renderScheduleTable('姫路城見学希望者向け：参考ルート', data.castleRoute, '全員参加ではありません。2日目の基本は自由行動です。');
+renderScheduleTable('2日目：12月20日（日）① 姫路城コース（希望者）', data.castleRoute, '朝はホテルで朝食・各自チェックアウト。姫路城見学は希望制で、以下は参考ルートです。');
+renderScheduleTable('2日目：12月20日（日）② 自由コース', freeCourse, '明石・姫路周辺で観光、昼食、買い物を各自で楽しみます。');
+renderScheduleTable('2日目：全員共通の集合・帰路', commonReturn, 'どちらのコースも14:20に姫路駅集合です。');
