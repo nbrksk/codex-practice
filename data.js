@@ -13,6 +13,7 @@ window.TRIP_DATA = {
     himeji: {name:'姫路駅', description:'12月20日（日）14:20集合。14:36出発。', query:'姫路駅'}
   },
   day1: [
+    {time:'7:50', title:'生山駅 集合', description:'8:08発の特急やくもに乗車します。具体的な集合場所は幹事の案内をご確認ください。', query:'生山駅', highlight:true, status:'集合時刻', kind:'confirmed'},
     {time:'8:08', title:'生山駅 発', description:'特急やくもで岡山へ。', query:'生山駅'},
     {time:'9:47頃', title:'岡山駅 着', description:'山陽新幹線へ乗り換え。', query:'岡山駅'},
     {time:'10:40頃', title:'新神戸駅 着', description:'三宮方面へ移動。', query:'新神戸駅'},
