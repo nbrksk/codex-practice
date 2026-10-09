@@ -78,3 +78,37 @@ else data.contacts.forEach(contact => {
   }
   contacts.append(item);
 });
+
+// 一覧表もタイムラインと同じ行程データから生成します。
+function renderScheduleTable(title, events, note) {
+  const section = element('section', '', 'schedule-table-section');
+  const heading = element('h3', title);
+  section.append(heading);
+  if (note) section.append(element('p', note, 'section-note'));
+  const wrapper = element('div', '', 'table-scroll');
+  wrapper.tabIndex = 0;
+  wrapper.setAttribute('role', 'region');
+  wrapper.setAttribute('aria-label', title + 'の一覧表');
+  const table = element('table', '', 'schedule-table');
+  table.append(element('caption', title));
+  const head = element('thead');
+  const headRow = element('tr');
+  ['時刻', '場所・予定', '内容'].forEach(text => {
+    const cell = element('th', text); cell.scope = 'col'; headRow.append(cell);
+  });
+  head.append(headRow); table.append(head);
+  const body = element('tbody');
+  events.forEach(event => {
+    const row = element('tr', '', event.highlight ? 'table-highlight' : '');
+    const time = element('th', event.time); time.scope = 'row';
+    const place = element('td', event.title);
+    const detail = element('td', event.description);
+    if (event.status === '予約済' || event.kind === 'tentative') detail.append(element('span', event.status, 'label ' + event.kind));
+    row.append(time, place, detail); body.append(row);
+  });
+  table.append(body); wrapper.append(table); section.append(wrapper);
+  document.getElementById('schedule-tables').append(section);
+}
+renderScheduleTable('1日目：12月19日（土）', data.day1);
+renderScheduleTable('2日目：12月20日（日）', data.day2);
+renderScheduleTable('姫路城見学希望者向け：参考ルート', data.castleRoute, '全員参加ではありません。2日目の基本は自由行動です。');
