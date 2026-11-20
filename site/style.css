@@ -19,3 +19,19 @@
   .weather-grid { grid-template-columns: 1fr; }
   .navigation a:nth-last-child(-n+2) { grid-column: span 2; }
 }
+
+.facility-photo {
+  margin: 12px 0 0;
+}
+.facility-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.facility-photo figcaption {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}

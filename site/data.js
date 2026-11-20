@@ -2,13 +2,31 @@
 // confirmed は予約確認済みにだけ使用します。未確認の電話番号等を追加しないでください。
 window.TRIP_DATA = {
   places: {
-    ikuta: {name:'生田神社', description:'参拝と境内散策。', query:'生田神社 神戸'},
+    ikuta: {name:'生田神社', description:'参拝と境内散策。', query:'生田神社 神戸',
+      photo: {
+        src: 'images/ikuta-shrine.webp', width: 900, height: 598, alt: '生田神社の拝殿',
+        author: 'Saigen Jiro', source: 'https://commons.wikimedia.org/wiki/File:Ikuta-jinja,_haiden-1.jpg',
+        license: 'CC0 1.0', licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+      },
+    },
     cruise: {name:'THE KOBE CRUISE コンチェルト', description:'12:30出航のランチクルーズ。鉄板焼「海岳」。', query:'THE KOBE CRUISE コンチェルト 神戸', status:'予約済', kind:'confirmed'},
-    museum: {name:'神戸海洋博物館', description:'神戸の港と海の歴史に触れる見学。', query:'神戸海洋博物館'},
+    museum: {name:'神戸海洋博物館', description:'神戸の港と海の歴史に触れる見学。', query:'神戸海洋博物館',
+      photo: {
+        src: 'images/kobe-maritime-museum.webp', width: 900, height: 600, alt: '神戸海洋博物館の白い屋根と神戸ポートタワー',
+        author: 'Balon Greyjoy', source: 'https://commons.wikimedia.org/wiki/File:20190901_Kobe_Port_Tower_and_Maritime_Museum-1.jpg',
+        license: 'CC0 1.0', licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+      },
+    },
     kawasaki: {name:'カワサキワールド', description:'神戸海洋博物館内のものづくり展示を見学。', query:'カワサキワールド'},
     hotel: {name:'明石ルミナスホテル', description:'1日目の宿泊先。JR西明石駅が最寄駅。', query:'明石ルミナスホテル'},
     dinner: {name:'居酒屋 いっぽん志や 西明石店', description:'1日目18:00頃からの夕食候補。', query:'居酒屋 いっぽん志や 西明石店', status:'仮予定', kind:'tentative'},
-    castle: {name:'姫路城', description:'2日目、見学希望者向けの自由行動先。', query:'姫路城'},
+    castle: {name:'姫路城', description:'2日目、見学希望者向けの自由行動先。', query:'姫路城',
+      photo: {
+        src: 'images/himeji-castle.webp', width: 900, height: 600, alt: '石垣の上にそびえる姫路城の白い天守',
+        author: 'Nikos Kitsakis', source: 'https://commons.wikimedia.org/wiki/File:Himeji_castle_in_may_2015.jpg',
+        license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+      },
+    },
     garden: {name:'好古園', description:'姫路城周辺の自由行動先の一例。', query:'好古園 姫路'},
     himeji: {name:'姫路駅', description:'12月20日（日）14:20集合。14:36出発。', query:'姫路駅'}
   },

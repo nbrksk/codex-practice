@@ -60,7 +60,22 @@ Object.values(data.places).forEach(place => {
   const link = mapLink(place.query, false, `${place.name} ↗`);
   link.className = 'place-link';
   heading.append(link);
-  card.append(heading, element('p', place.description), actions(place.query));
+  card.append(heading, element('p', place.description));
+  if (place.photo) {
+    const { src, width, height, alt, author, source, license, licenseUrl } = place.photo;
+    const figure = element('figure', '', 'facility-photo');
+    const photo = element('img');
+    Object.assign(photo, { src, width, height, alt, loading: 'lazy', decoding: 'async' });
+    const caption = element('figcaption');
+    const credit = element('a', author + ' / Wikimedia Commons');
+    credit.href = source;
+    const terms = element('a', license);
+    terms.href = licenseUrl;
+    caption.append(credit, ' · ', terms, ' · 縮小・WebP変換');
+    figure.append(photo, caption);
+    card.append(figure);
+  }
+  card.append(actions(place.query));
   document.getElementById('facility-grid').append(card);
 });
 const announcements = document.getElementById('announcements');
