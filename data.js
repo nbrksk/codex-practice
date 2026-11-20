@@ -13,9 +13,9 @@ window.TRIP_DATA = {
     himeji: {name:'姫路駅', description:'12月20日（日）14:20集合。14:36出発。', query:'姫路駅'}
   },
   day1: [
-    {time:'6:46', title:'宍道駅 発（宍道駅から乗る方）', description:'岡山行きの特急やくも6号に乗車。生山駅8:08発の同じ列車で、生山駅から乗る方と車内で合流します。', query:'宍道駅'},
-    {time:'7:50', title:'生山駅 集合', description:'奥出雲発・生山駅乗車グループは生山駅に集合し、8:08発の特急やくも6号に乗車します。具体的な集合場所は幹事の案内をご確認ください。', query:'生山駅', highlight:true, status:'集合時刻', kind:'confirmed'},
-    {time:'8:08', title:'生山駅 発', description:'特急やくも6号の車内で宍道駅乗車グループと合流し、岡山へ。', query:'生山駅'},
+    {time:'確認中', title:'宍道駅 発（宍道駅乗車グループ）', description:'岡山方面の特急やくもに乗車予定。旅行日当日の列車名と発車時刻は確認中です。', query:'宍道駅'},
+    {time:'7:50', title:'生山駅 集合（奥出雲発・生山駅乗車グループ）', description:'奥出雲から生山駅へ移動し、駅に集合。具体的な集合場所は幹事の案内をご確認ください。', query:'生山駅', highlight:true, status:'集合時刻', kind:'confirmed'},
+    {time:'8:08（候補）', title:'生山駅 発', description:'旅行日当日の発車時刻と列車名は確認中です。宍道駅乗車グループと車内で合流し、岡山へ向かう予定です。', query:'生山駅'},
     {time:'9:47頃', title:'岡山駅 着', description:'山陽新幹線へ乗り換え。', query:'岡山駅'},
     {time:'10:40頃', title:'新神戸駅 着', description:'三宮方面へ移動。', query:'新神戸駅'},
     {time:'11:00〜11:40', title:'生田神社', description:'参拝・境内散策。', place:'ikuta'},
