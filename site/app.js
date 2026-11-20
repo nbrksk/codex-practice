@@ -117,3 +117,86 @@ renderScheduleTable('1日目：12月19日（土）', data.day1);
 renderScheduleTable('2日目：12月20日（日）① 姫路城コース（希望者）', data.castleRoute, '朝はホテルで朝食・各自チェックアウト。姫路城見学は希望制で、以下は参考ルートです。');
 renderScheduleTable('2日目：12月20日（日）② 自由コース', freeCourse, '明石・姫路周辺で観光、昼食、買い物を各自で楽しみます。');
 renderScheduleTable('2日目：全員共通の集合・帰路', commonReturn, 'どちらのコースも14:20に姫路駅集合です。');
+
+const forecastCities = [
+  { name: '神戸', latitude: 34.69, longitude: 135.20 },
+  { name: '明石', latitude: 34.64, longitude: 134.99 },
+  { name: '姫路', latitude: 34.82, longitude: 134.69 },
+];
+const tripDates = ['2026-12-19', '2026-12-20'];
+const forecastDate = new Intl.DateTimeFormat('ja-JP', {
+  month: 'numeric', day: 'numeric', weekday: 'short', timeZone: 'Asia/Tokyo',
+});
+const weatherDescriptions = new Map([
+  [0, '快晴'], [1, '晴れ'], [2, '晴れ時々くもり'], [3, 'くもり'],
+  [45, '霧'], [48, '霧氷'], [51, '霧雨'], [53, '霧雨'], [55, '霧雨'],
+  [56, '着氷性の霧雨'], [57, '着氷性の霧雨'],
+  [61, '弱い雨'], [63, '雨'], [65, '強い雨'], [66, '着氷性の雨'], [67, '着氷性の雨'],
+  [71, '弱い雪'], [73, '雪'], [75, '強い雪'], [77, '霧雪'],
+  [80, 'にわか雨'], [81, 'にわか雨'], [82, '強いにわか雨'],
+  [85, 'にわか雪'], [86, '強いにわか雪'],
+  [95, '雷雨'], [96, 'ひょうを伴う雷雨'], [99, 'ひょうを伴う雷雨'],
+]);
+
+async function renderWeather() {
+  const status = document.getElementById('weather-status');
+  const grid = document.getElementById('weather-cities');
+  status.textContent = '天気予報を取得しています…';
+  const fields = ['weather_code', 'temperature_2m_max', 'temperature_2m_min', 'precipitation_probability_max'];
+  const params = new URLSearchParams({
+    latitude: forecastCities.map(city => city.latitude).join(','),
+    longitude: forecastCities.map(city => city.longitude).join(','),
+    daily: fields.join(','),
+    timezone: 'Asia/Tokyo',
+    forecast_days: '16',
+  });
+
+  try {
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`, {
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) throw new Error('Weather request failed');
+    const forecasts = await response.json();
+    if (!Array.isArray(forecasts) || forecasts.length !== forecastCities.length ||
+        forecasts.some(({ daily }) => !daily?.time?.length || fields.some(field => !Array.isArray(daily[field])))) {
+      throw new Error('Incomplete weather forecast');
+    }
+
+    const dates = forecasts[0].daily.time;
+    const availableTripDates = tripDates.filter(date => forecasts.every(({ daily }) =>
+      daily.time.includes(date)));
+    const shownDates = availableTripDates.length ? availableTripDates : dates.slice(0, 3);
+    const cards = forecastCities.map((city, cityIndex) => {
+      const { daily } = forecasts[cityIndex];
+      const card = element('article', '', 'card');
+      const list = element('ul', '', 'weather-days');
+      shownDates.forEach(date => {
+        const index = daily.time.indexOf(date);
+        const day = element('li');
+        const time = element('time', forecastDate.format(new Date(date + 'T00:00:00+09:00')));
+        time.dateTime = date;
+        const description = weatherDescriptions.get(daily.weather_code[index]) ?? '天気データなし';
+        const temperature = value => Number.isFinite(value) ? `${Math.round(value)}℃` : '—';
+        const high = temperature(daily.temperature_2m_max[index]);
+        const low = temperature(daily.temperature_2m_min[index]);
+        const chance = daily.precipitation_probability_max[index];
+        day.append(time, element('span', description), element('span', `最高 ${high} ／ 最低 ${low}`),
+          element('span', `降水確率（最大） ${Number.isFinite(chance) ? chance + '%' : '—'}`));
+        list.append(day);
+      });
+      card.append(element('h3', city.name), list);
+      return card;
+    });
+    grid.append(...cards);
+    if (availableTripDates.length === tripDates.length) {
+      status.textContent = '旅行日（12月19日・20日）の予報です。';
+    } else if (availableTripDates.length) {
+      status.textContent = '旅行日のうち、取得できた日付の予報です。';
+    } else {
+      status.textContent = '直近3日間の予報です。旅行日（12月19日・20日）の予報は現在取得できません。';
+    }
+  } catch {
+    status.textContent = '天気予報を取得できませんでした。下の気象庁リンクからご確認ください。';
+  }
+}
+renderWeather();
