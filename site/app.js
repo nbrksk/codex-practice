@@ -113,7 +113,7 @@ function renderScheduleTable(title, events, note) {
   table.append(body); wrapper.append(table); section.append(wrapper);
   document.getElementById('schedule-tables').append(section);
 }
-renderScheduleTable('1日目：12月19日（土）', data.day1, '宍道 → 生山 → 岡山 → 神戸 → 西明石');
+renderScheduleTable('1日目：12月19日（土）', data.day1, '宍道駅乗車グループと奥出雲発・生山駅乗車グループは、特急やくも6号の車内で合流し、岡山・新神戸へ向かいます。');
 renderScheduleTable('2日目：12月20日（日）① 姫路城コース（希望者）', data.castleRoute, '朝はホテルで朝食・各自チェックアウト。姫路城見学は希望制で、以下は参考ルートです。');
 renderScheduleTable('2日目：12月20日（日）② 自由コース', freeCourse, '明石・姫路周辺で観光、昼食、買い物を各自で楽しみます。');
 renderScheduleTable('2日目：集合・帰路（生山駅・宍道駅）', commonReturn, 'どちらのコースも14:20に姫路駅集合です。帰りは、岡山から同じ特急で生山駅・宍道駅へ向かいます。');
