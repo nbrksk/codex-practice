@@ -14,8 +14,8 @@ window.TRIP_DATA = {
   },
   day1: [
     {time:'6:46', title:'宍道駅 発（宍道駅から乗る方）', description:'岡山行きの特急やくも6号に乗車。生山駅8:08発の同じ列車で、生山駅から乗る方と車内で合流します。', query:'宍道駅'},
-    {time:'7:50', title:'生山駅 集合', description:'生山駅から乗る方は、8:08発の特急やくも6号に乗車します。具体的な集合場所は幹事の案内をご確認ください。', query:'生山駅', highlight:true, status:'集合時刻', kind:'confirmed'},
-    {time:'8:08', title:'生山駅 発', description:'特急やくも6号で岡山へ。', query:'生山駅'},
+    {time:'7:50', title:'生山駅 集合', description:'奥出雲発・生山駅乗車グループは生山駅に集合し、8:08発の特急やくも6号に乗車します。具体的な集合場所は幹事の案内をご確認ください。', query:'生山駅', highlight:true, status:'集合時刻', kind:'confirmed'},
+    {time:'8:08', title:'生山駅 発', description:'特急やくも6号の車内で宍道駅乗車グループと合流し、岡山へ。', query:'生山駅'},
     {time:'9:47頃', title:'岡山駅 着', description:'山陽新幹線へ乗り換え。', query:'岡山駅'},
     {time:'10:40頃', title:'新神戸駅 着', description:'三宮方面へ移動。', query:'新神戸駅'},
     {time:'11:00〜11:40', title:'生田神社', description:'参拝・境内散策。', place:'ikuta'},
