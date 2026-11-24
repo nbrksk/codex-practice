@@ -19,7 +19,7 @@ window.TRIP_DATA = {
     },
     kawasaki: {name:'カワサキワールド', description:'神戸海洋博物館内のものづくり展示を見学。', query:'カワサキワールド'},
     hotel: {name:'明石ルミナスホテル', description:'1日目の宿泊先。JR西明石駅が最寄駅。', query:'明石ルミナスホテル'},
-    dinner: {name:'居酒屋 いっぽん志や 西明石店', description:'1日目18:00頃からの夕食候補。', query:'居酒屋 いっぽん志や 西明石店', status:'仮予定', kind:'tentative'},
+    dinner: {name:'はし処 恵', description:'1日目18:00集合。兵庫県明石市西明石北町3丁目1-13-102。JR西明石駅西口から徒歩約11分。', query:'はし処 恵 兵庫県明石市西明石北町3丁目1-13-102', status:'予約済', kind:'confirmed'},
     castle: {name:'姫路城', description:'2日目、見学希望者向けの自由行動先。', query:'姫路城',
       photo: {
         src: 'images/himeji-castle.webp', width: 900, height: 600, alt: '石垣の上にそびえる姫路城の白い天守',
@@ -39,10 +39,11 @@ window.TRIP_DATA = {
     {time:'11:00〜11:40', title:'生田神社', description:'参拝・境内散策。', place:'ikuta'},
     {time:'11:40〜12:10', title:'神戸ハーバーランド方面へ移動', description:'ランチクルーズの乗船受付。出航に遅れないようご注意ください。', query:'神戸ハーバーランド コンチェルト'},
     {time:'12:30〜14:15', title:'THE KOBE CRUISE コンチェルト', description:'12:30出航。ランチクルーズ・鉄板焼「海岳」。', place:'cruise', status:'予約済', kind:'confirmed', highlight:true},
-    {time:'14:30〜16:30', title:'神戸海洋博物館・カワサキワールド', description:'博物館・ものづくり展示を見学。', place:'museum'},
+    {time:'14:30〜16:30', title:'神戸海洋博物館・カワサキワールド（希望者）', description:'昼食後は、博物館・ものづくり展示の見学または自由時間を選べます。', place:'museum'},
+    {time:'14:30〜16:30', title:'自由時間（希望者）', description:'見学に参加しない方は自由時間。18:00に夕食会場へ直接お越しください。'},
     {time:'16:30頃', title:'西明石方面へ移動', description:'公共交通機関で宿泊先へ。', query:'西明石駅'},
     {time:'17:30頃', title:'明石ルミナスホテル', description:'チェックイン。禁煙シングル利用予定。', place:'hotel'},
-    {time:'18:00頃〜', title:'居酒屋 いっぽん志や 西明石店', description:'夕食。お店は仮予定です。', place:'dinner', status:'仮予定', kind:'tentative'},
+    {time:'18:00', title:'夕食会場 集合・はし処 恵', description:'兵庫県明石市西明石北町3丁目1-13-102。JR西明石駅西口から徒歩約11分。自由時間を選んだ方は会場へ直接集合。7名で予約済み。', place:'dinner', status:'予約済', kind:'confirmed', highlight:true},
     {time:'夕食後', title:'自由時間', description:'各自ホテルへお戻りください。'}
   ],
   day2: [
